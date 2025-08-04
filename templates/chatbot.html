@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="chat-container">
+    <div class="chat-card">
+        <div class="chat-header">📜 Dumbledore - Your Legal Assistant</div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="bot-message">Hello, I am <b>Dumbledore</b>, your legal assistant. How may I help you today?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your question here..." onkeydown="if(event.key==='Enter'){sendMessage();}">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const MAX_MESSAGES = 5;
+
+async function sendMessage() {
+    const input = document.getElementById('user-input');
+    const query = input.value.trim();
+    if (!query) return;
+
+    const chatBox = document.getElementById('chat-messages');
+
+    chatBox.innerHTML += `<div class="user-message">${query}</div>`;
+    input.value = '';
+
+    const res = await fetch('/get_response', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({query})
+    });
+    const data = await res.json();
+
+    chatBox.innerHTML += `<div class="bot-message">${data.response}</div>`;
+
+    // ✅ Keep last 5 messages
+    const messages = chatBox.querySelectorAll('.user-message, .bot-message');
+    if (messages.length > MAX_MESSAGES) {
+        const excess = messages.length - MAX_MESSAGES;
+        for (let i = 0; i < excess; i++) {
+            messages[i].remove();
+        }
+    }
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+
+{% endblock %}

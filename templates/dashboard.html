@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="dashboard-container">
+
+  <!-- Section 1: Hourglass Animation with Quote -->
+  <section class="blog-hourglass-section">
+    <div class="blog-hourglass">
+      <div class="sand top"></div>
+      <div class="sand bottom"></div>
+    </div>
+    <p class="blog-time-quote">"Time flows like sand, and so does wisdom through our laws."</p>
+  </section>
+
+  <!-- Section 2: Rolling Parchment -->
+  <section class="blog-parchment-section">
+    <div class="blog-parchment">
+      <div class="blog-parchment-text">
+        Our blog shares key insights on emerging laws, cases, reforms and research in migration, family, criminal, contract, and environmental law.
+      </div>
+    </div>
+  </section>
+
+    <section class="blog-articles-container">
+      {% for article in articles %}
+       <div class="blog-card">
+          {% if article.image_data %}
+             <img src="data:image/jpeg;base64,{{ article.image_data }}" alt="Article Image" class="blog-thumbnail">
+          {% endif %}
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.content[:200] }}...</p>
+           <button onclick="window.location.href='{{ url_for('blog_article', article_id=loop.index0) }}'">Read More</button>
+       </div>
+      {% endfor %}
+   </section>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".blog-card");
+  cards.forEach((card, index) => {
+    card.style.setProperty("--delay", index);
+  });
+});
+</script>
+{% endblock %}

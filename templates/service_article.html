@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="article-page">
+    <div class="article-card-full">
+        <img src="{{ url_for('static', filename='images/' ~ article.image) }}" alt="{{ article.title }}" class="article-header-img">
+        <div class="article-body">
+            <h1>{{ article.title }}</h1>
+            <div class="article-content">
+                {{ article.content|safe }}
+            </div>
+            <button class="back-btn" onclick="window.location.href='{{ url_for('services') }}'">← Back to Services</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

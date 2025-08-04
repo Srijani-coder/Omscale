@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="values-section">
+    <div class="values-image-side">
+        <img src="{{ url_for('static', filename='images/law_and_order_image.png') }}" alt="Justice" class="values-bg-img">
+    </div>
+
+    <div class="values-text-side">
+        <div class="values-card">
+            <h2 class="values-title">Our Commitments</h2>
+            <p id="typewriter-text"></p>
+            <button class="learn-more-btn" onclick="window.location.href='{{ url_for('services') }}'">Learn More</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const text = "At our law firm, We are Committed to serving the community, business and industries in Immigration, Conveyancing, Family, Criminal, Contract, Wills & Estates, Environment, Planning and Climate Change Law at competitive cost. ";
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        document.getElementById("typewriter-text").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40); // smoother speed
+    }
+}
+window.onload = typeWriter;
+</script>
+
+{% endblock %}

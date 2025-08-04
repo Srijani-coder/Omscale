@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="article-page">
+  <div class="article-card-full">
+    {% if image_data %}
+      <img src="data:image/jpeg;base64,{{ image_data }}" class="article-header-img" alt="{{ title }}">
+    {% else %}
+      <img src="{{ url_for('static', filename='images/default.jpg') }}" class="article-header-img" alt="No Image">
+    {% endif %}
+
+    <div class="article-body">
+      <h1>{{ title }}</h1>
+
+      <div class="article-content">
+        {{ content|markdown }}
+      </div>
+
+      <div class="article-actions">
+        <button class="like-btn" onclick="handleLike(this)">👍 Like <span class="like-count">0</span></button>
+        <button class="share-btn" onclick="shareArticle()">🔗 Share</button>
+      </div>
+
+      <form method="POST" class="comment-form">
+        <textarea name="comment" placeholder="Add your comment..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="comments">
+        {% for comment in comments %}
+        <p>💬 {{ comment }}</p>
+        {% else %}
+        <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function shareArticle() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("Blog link copied!");
+}
+
+function handleLike(btn) {
+  const span = btn.querySelector(".like-count");
+  const count = parseInt(span.innerText);
+  span.innerText = count + 1;
+}
+</script>
+
+<style>
+/* Improved responsive styling */
+.article-page {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.article-card-full {
+  max-width: 800px;
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.article-header-img {
+  width: 100%;
+  border-radius: 8px;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.article-body h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.article-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.article-actions {
+  margin-bottom: 20px;
+}
+
+.article-actions button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #004aad;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.article-actions button:hover {
+  background-color: #00327a;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  min-height: 100px;
+  margin-bottom: 10px;
+}
+
+.comment-form button {
+  background-color: #007BFF;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comments p {
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .article-card-full {
+    padding: 15px;
+  }
+
+  .article-body h1 {
+    font-size: 1.5rem;
+  }
+
+  .article-content {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
+{% endblock %}

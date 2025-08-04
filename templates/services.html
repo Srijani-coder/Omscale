@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="service-section service-overview">
+    <div class="overview-card harry-style">
+        <div class="poster-body">
+            <h2>Our Services Overview</h2>
+            <p id="typewriter-text"></p>
+        </div>
+    </div>
+</section>
+
+<!--  Section 2: Service Articles -->
+<section class="service-section service-articles">
+    <h2>We provide services for you:</h2>
+    <div class="articles-container">
+        {% for service in services %}
+        <div class="article-card">
+            <div class="article-image">
+                <img src="{{ url_for('static', filename='images/' ~ service.image) }}" alt="{{ service.title }}">
+            </div>
+            <div class="article-content">
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <button onclick="window.location.href='/service/{{ service.id }}'" class="read-more-btn">Read More</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!--  Section 3: Our Team -->
+<section class="service-section service-team">
+    <h2>Meet Our Principal Lawyer</h2>
+    <div class="team-container">
+        <div class="team-image">
+            <img src="{{ url_for('static', filename='images/pp_lawyer.png') }}" alt="Principal Lawyer">
+        </div>
+        <div class="team-info">
+            <h3>Dr. Debashis Raha</h3>
+            <p>Professional Scientist, Chartered Professional Engineer & Fellow (Engineers Australia), Lead Auditor (Exemplar Global) and Solicitor (Supreme Courts and High Court of Australia) for 30 years in Australia at Sydney Water, NSW EPA, Aust Public Service, legal firms and teaching at  the University of Sydney, Wollongong, Western Sydney, UTS Sydney and Vidyasagar University in the evening/digitally on the web.
+               I work with a group of professional lawyers practising at the Supreme Courts and High Court of Australia in Immigration, Environment, Planning, Climate Change, Property, Family, Criminal, Contract, Wills and Estates Law at competitive cost.</p>
+            <a href="https://www.linkedin.com/in/dr-debashis-enviro-scientist-engineer-auditor-solicitor-aust-3705824?utm_source=share" target="_blank" class="linkedin-btn">View LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<script>
+const text = `We work with a group of professional lawyers practising at the Supreme Courts and High Court of Australia in Immigration, Environment, Planning, Climate Change, Property, Family, Criminal, Contract, Wills and Estates Law at competitive cost.
+
+We are now focussed and committed to serve, advise, apply, process and represent our Migration Clients end-to-end for every visa at competitive cost such as Work and Holiday (Visa 462), Visitors (600), Student (500), Graduate Skills (485), Skilled Migrant (189), States’-sponsored PR (190), Regional Provisional (491), Employer Nomination Visa (186), Regional Sponsored Migration Scheme (494), Skills in Demand (482), Refugee Protection (866) and Parents’ Migration (103, 143, 804, 864) Visa.
+
+We can represent our clients in any migration legal matter at the High Court, Federal Courts, Supreme Courts, District, Lower Courts and Tribunals e.g. AAT, NCATs.
+
+Our Principal Law-Yer Hold Post-Doctoral Doctor of Science & Law (Aust), PhD Engineering (Engg) & Law (Aust), M Law (Sydney), MS (HSE & Law) (Aust), MS Renewable Energy & Law, MBA (Accounting, Contract  & Law) (Aust), Grad Diploma (Legal Practice) (Aust), Diploma TQM in Legal Practice (Aust), B Law (LLB) (Aust), BS (Chemical Engg), BS Honours (Enviro Engg) (Gold Medallist) and B Sc Hons (Environment).
+
+You can contact us on mobile/WhatsApp at +61 403 338 476 or email ombarristersandsolicitors@gmail.com.`;
+
+let idx = 0;
+function typeWriter() {
+    if (idx < text.length) {
+        document.getElementById("typewriter-text").innerHTML += text.charAt(idx);
+        idx++;
+        setTimeout(typeWriter, 35);
+    }
+}
+window.onload = typeWriter;
+</script>
+{% endblock %}
