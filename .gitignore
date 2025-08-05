@@ -3,7 +3,6 @@
 api/.env
 
 # Ignore data folder and its contents
-data/law_docs/*.pdf
 data/law_docs/*.docx
 
 # Ignore Python cache and logs
