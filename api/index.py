@@ -13,7 +13,7 @@ import docx
 from urllib.parse import quote_plus
 import base64
 
-VERIFICATION_FILE = ""
+VERIFICATION_FILE = "google3b973da6c814d760.html"
 
 load_dotenv()
 SENDER_EMAIL = os.getenv("EMAIL_USER")
