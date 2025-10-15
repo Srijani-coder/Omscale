@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ title if title else "Law Firm" }}</title>
+    <title>{{ title if title else "Om Barristers & Solicitors" }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 <header class="site-header">
     <div class="header-left">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
-        <h1 class="site-name">OmSCALE</h1>
+        <h1 class="site-name">Om Barristers & Solicitors</h1>
     </div>
     <nav class="header-nav">
         <a href="{{ url_for('home') }}">Home</a>
