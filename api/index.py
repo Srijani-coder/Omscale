@@ -102,7 +102,7 @@ def send_contact():
     {message}
     """
 
-    # ✅ Use global SENDER_EMAIL & PASSWORD
+    # Use global SENDER_EMAIL & PASSWORD
     receiver_email = SENDER_EMAIL
 
     msg = MIMEMultipart()
@@ -169,8 +169,12 @@ def service_article(service_id):
             "image": "contract_proc.png",
             "content": """
                 <ul>
-                    Advised and complied with Commonwealth Procurement Rules (CPRs), PGPA Act, ensuring value-for-money in procurement processes. Drafted, reviewed and negotiated a range of enforceable commercial contracts, e.g. procurement & supply contracts, SLAs, ICT, PPP contracts. Advised and supported clients on the legal structure of EOI, RFT, tender evaluation, probity, ethical standards, legal and commercial risks and mitigation strategies (e.g. indemnities, limitations of liability), negotiations with vendors/suppliers/contractors, contract breaches, disputes resolution (negotiation, mediation, arbitration, litigation, terminations). Liaised with government regulators (e.g. Australian National Anti-Corruption Commission) to deter fraud in Government Procurement and Contract. Trained, developed, supervised, coached and mentored APS employees in procurement and contract laws.
+                   <li>Advised and complied with Commonwealth Procurement Rules (CPRs), PGPA Act, ensuring value-for-money in procurement processes. Drafted, reviewed and negotiated a range of enforceable commercial contracts, e.g. procurement & supply contracts, SLAs, ICT, PPP contracts.</li>
+                   <li>Drafted, reviewed and negotiated a range of enforceable commercial contracts, e.g. procurement & supply contracts, SLAs, ICT, PPP contracts.</li>
+                   <li>Advised and supported clients on the legal structure of EOI, RFT, tender evaluation, probity, ethical standards, legal and commercial risks and mitigation strategies (e.g. indemnities, limitations of liability), negotiations with vendors/suppliers/contractors, contract breaches, disputes resolution (negotiation, mediation, arbitration, litigation, terminations). Liaised with government regulators (e.g. Australian National Anti-Corruption Commission) to deter fraud in Government Procurement and Contract.</li>
+                   <li>Trained, developed, supervised, coached and mentored APS employees in procurement and contract laws</li>
                 </ul>
+                    
             """
         },
         4: {
@@ -194,7 +198,7 @@ def service_article(service_id):
                 <ul>
                     <li>Advised clients on their legal rights, responsibilities in civil matters and identified legal issues, assessed risks and outline possible outcomes and remedies.</li>
                     <li>Drafted pleadings, claims, defence documents, affidavits and reviewed and drafted contracts, deeds, agreements and settlement offers.</li>
-                    <li>Attempted to resolve disputes through negotiation, mediation, arbitration before proceeding to court. 4. Represented clients in ADR forums such as: Mediation, Conciliation and Arbitration.</li>
+                    <li>Attempted to resolve disputes through negotiation, mediation, arbitration before proceeding to court. Represented clients in ADR forums such as: Mediation, Conciliation and Arbitration</li>
                     <li>Develop litigation strategies based on the strength of the case, evidence, and client goals.</li>
                     <li>Assisted clients in enforcing court orders (e.g. garnishment, property seizure, or bankruptcy proceedings</li>
                 </ul>
@@ -224,7 +228,7 @@ def service_article(service_id):
                     <li>Advised on eligibility and applied for spousal maintenance. Negotiated ongoing/lump-sum support payments. Assisted with Child Support Agency interactions or private agreements.</li>
                     <li>Drafted pre-nuptial, post-nuptial, and cohabitation agreements and their enforcement.</li>
                     <li>Assisted clients with Domestic Violence Orders (DVOs) or Apprehended Violence Orders (AVOs). Represented clients in court and ensured safety and protection under the law.</li>
-                    <li>Encouraged clients to resolve matters through mediation, arbitration or collaborative law. Represented clients in Family Dispute Resolution (FDR) sessions.</li>
+                    <li>Encouraged clients to resolve matters through Alternative Dispute Resolution (ADR) e.g. negotiation, mediation, arbitration.</li>
                     <li>Represented clients in family law courts during trials, hearings, appeals, drafing legal documentation, affidavits, and submissions.</li>
                 </ul>
             """
