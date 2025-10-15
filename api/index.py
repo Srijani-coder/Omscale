@@ -1,5 +1,6 @@
 # Flask entry point
 from flask import Flask, render_template, request, jsonify
+from flask import send_from_directory
 from chatbot.chain import get_bot_response
 import os
 import smtplib
@@ -11,6 +12,8 @@ import requests, io
 import docx
 from urllib.parse import quote_plus
 import base64
+
+VERIFICATION_FILE = ""
 
 load_dotenv()
 SENDER_EMAIL = os.getenv("EMAIL_USER")
@@ -79,6 +82,10 @@ def list_folder_files():
 
 
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
+
+@app.route(f"/{VERIFICATION_FILE}", strict_slashes=False)
+def google_site_verification():
+    return send_from_directory(STATIC_DIR, VERIFICATION_FILE, mimetype="text/html")
 
 @app.route('/')
 def home():
