@@ -304,5 +304,49 @@ def get_response():
     response = get_bot_response(user_query)
     return jsonify({"response": response})
 
+from flask import Response, url_for
+from datetime import datetime
+
+@app.route("/sitemap.xml", methods=["GET"])
+def sitemap():
+    # --- Define your base URL ---
+    base_url = "https://omscale.onrender.com"  # Change if you add custom domain later
+
+    # --- Static routes (public pages) ---
+    static_pages = [
+        "home",
+        "services",
+        "chatbot",
+        "dashboard",
+    ]
+
+    # --- Dynamic service pages ---
+    service_pages = [url_for("service_article", service_id=i, _external=False) for i in range(1, 10)]
+
+    # --- Combine all URLs ---
+    pages = [url_for(page, _external=False) for page in static_pages] + service_pages
+    pages = [f"{base_url}{path}" for path in pages]
+
+    # --- Build XML ---
+    xml = ["<?xml version='1.0' encoding='UTF-8'?>",
+           "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>"]
+
+    lastmod = datetime.utcnow().strftime("%Y-%m-%d")
+    for page in pages:
+        xml.append(f"  <url><loc>{page}</loc><lastmod>{lastmod}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>")
+    xml.append("</urlset>")
+
+    sitemap_xml = "\n".join(xml)
+    return Response(sitemap_xml, mimetype="application/xml")
+
+@app.route("/robots.txt")
+def robots():
+    content = """User-agent: *
+    Allow: /
+    Sitemap: https://omscale.onrender.com/sitemap.xml
+    """
+    return Response(content, mimetype="text/plain")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
